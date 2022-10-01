@@ -45,7 +45,12 @@ unsigned long long power(unsigned long long x,
     return res;
 }
  
-
+// Returns n^(-1) mod p
+unsigned long long modInverse(unsigned long long n, 
+                                            int p)
+{
+    return power(n, p - 2, p);
+}
  
 // Returns nCr % p using Fermat's little
 // theorem.
