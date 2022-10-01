@@ -5,7 +5,12 @@ using namespace std;
 const int MaxN=2e5+5,MaxM=1e6+5;
 int n,b[MaxN];
 vector<int>e[MaxN];
-
+inline void dfs(int x){
+	cout<<x<<" ";
+	for(auto y:e[x]){
+		dfs(y);
+	}
+}
 inline void solve(){
 	cin>>n;
 	for(int i=0;i<=n+1;i++)e[i].clear();
