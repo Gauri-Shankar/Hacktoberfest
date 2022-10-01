@@ -1,6 +1,6 @@
 #ifdef LLOC
 #include "bits/gh.h"
-#define debug(...) debug_out(#__VA_ARGS__, __VA_ARGS__)
+#define debug(...) debug_out(#_VA_ARGS, __VA_ARGS_)
 #else
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
@@ -18,7 +18,27 @@ vector<int> adj[N];
 int n, k;
 int cnt;
  
-
+int dfs(int u, int p, const int &m)
+{
+  int ret = 0;
+ 
+  for (auto &v: adj[u])
+    if (v != p)
+    {
+      ret = max(ret, dfs(v, u, m));
+    }
+  ++ret;
+ 
+  if (ret == m && p != 0)
+  {
+    // I want root but I cant reach it!
+    ++cnt;
+    debug("AA", u, p, ret);
+    return 0;
+  }
+ 
+  return ret;
+}
  
 bool ok(int m)
 {
